@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nepali Land Converter
 
-## Getting Started
+Convert Nepali land units (Ropani · Aana · Paisa · Daam and Bigha · Kattha · Dhur) to square feet, square metres, acres and hectares. The page also shows how big the area actually is.
 
-First, run the development server:
+- **Converter**: type into any system and the others update as you go. Fields accept partial input and have press-and-hold steppers and arrow-key stepping. A "Tidy up" hint appears for values like 20 Aana, and you can share a link to the current area.
+- **Sense of scale**: draws the area as a square plot to scale next to a familiar reference (a parking space, badminton, tennis or basketball court, or a football pitch), with its side length and the length of a wall around it.
+- **Unit anatomy**: shows how each unit nests inside the next and fills in the area you entered.
+- **Quick reference**: one of each unit, with every figure calculated by the same engine.
+
+## Conversion standards
+
+All areas are stored as square feet. Each unit is defined by its exact square-foot value, and 1 ft = 0.3048 m exactly.
+
+| Unit   | ft²         | Shape            |
+| ------ | ----------- | ---------------- |
+| Ropani | 5,476       | 74 × 74 ft       |
+| Aana   | 342.25      | 18.5 × 18.5 ft   |
+| Paisa  | 85.5625     | 9.25 × 9.25 ft   |
+| Daam   | 21.390625   | 4.625 × 4.625 ft |
+| Bigha  | 72,900      | 270 × 270 ft     |
+| Kattha | 3,645       | 67.5 × 54 ft     |
+| Dhur   | 182.25      | 13.5 × 13.5 ft   |
+
+The engine lives in `lib/land.ts`, and `lib/land.test.ts` covers it. Results are for planning and comparison. Your Lalpurja and the Survey Office measurement are the legal record.
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn install
+yarn dev        # http://localhost:3000
+yarn test       # conversion tests
+yarn lint
+yarn typecheck
+yarn build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Built with Next.js (Pages Router), React, TypeScript and [Motion](https://motion.dev). Motion respects the system's reduced-motion setting.
